@@ -6,7 +6,21 @@ import jwt from 'jsonwebtoken'
 const segredo = 'S3gr3d0'
 
 class ServiceCliente {
+    async Buscar() {
+        return RepositoryCliente.Find()
 
+    }
+    
+    async Detalhe(id) {
+        if (!id) {
+            throw new Error("favor informar ")
+        }
+        const cliente = await RepositoryCliente.FindById(id)
+        if (!cliente) {
+            throw new Error(`ID ${id} do cliente não encontrado`)
+        }
+        return cliente
+    }
     async Criar(email, senha, nome) {
         if (!email || !senha || !nome) {
             throw new Error("favor informar todos os dados ")
@@ -14,13 +28,37 @@ class ServiceCliente {
         }
         const senhaCripto = await bcrypt.hash(senha, 12)
 
-        const cliente = await RepositoryCliente.Create(email, senhaCripto)
+        const cliente = await RepositoryCliente.Create(email, senhaCripto, nome)
 
 
         return cliente
     }
-    async Login(email, senha, ) {
-        if (!email || !senha ) {
+    
+    async Alterar(id, email, senha, nome) {
+        if (!id || !email || !senha || !nome) {
+            throw new Error("favor informar id ")
+        }
+        const senhaCripto = !senha
+            ? undefined
+            : await bcrypt.hash(senha, 12)
+
+        const clienteAlterado = await RepositoryCliente.Update(id, email, senhaCripto, nome)
+
+        return clienteAlterado
+    }
+    
+    async Deletar(id) {
+
+        if (!id) {
+            throw new Error("favor informar ")
+        }
+        const Cliente = RepositoryCliente.Delete(id)
+        return id
+    }
+
+
+    async Login(email, senha,) {
+        if (!email || !senha) {
             throw new Error("Email ou senha invalido ")
         }
         const cliente = await RepositoryCliente.FindByEmail(email)
