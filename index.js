@@ -1,6 +1,6 @@
 import express from 'express'
 import  database from './config/database.js'
-import e from 'express'
+import cliente from './router/cliente.js'
 
 
 const app = express()
@@ -8,10 +8,10 @@ const app = express()
 app.use(express.json())
 
 
-app.use("/api/v1/cliente", )
+app.use("/api/v1/cliente", cliente)
 
 database.db 
-    .sync({force:false}
+    .sync({force:false})
     .then((_)=> {
         app.listen(3000 , () => {
             console.log("Servidor rodando na porta 3000")
@@ -20,4 +20,4 @@ database.db
     .catch ((e) => {
         console.log(e)
     })
-    )
+    

@@ -2,10 +2,10 @@ import database from "../config/database.js"
 
 
 
-class Cliente{
+class Cliente {
     constructor() {
-        
-        this.model = database.db.define("clientes" , {
+
+        this.model = database.db.define("clientes", {
             id: {
                 type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
@@ -23,26 +23,7 @@ class Cliente{
             }
         })
     }
-}
-export default new Cliente().model
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
+}export default new Cliente().model
 
 
 
