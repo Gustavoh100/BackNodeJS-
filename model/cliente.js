@@ -20,7 +20,14 @@ class Cliente {
             },
             senha: {
                 type: database.db.Sequelize.STRING,
-            }
+            }, 
+            // pagamento: {
+            //     type: database.db.Sequelize.BOOLEAN,
+            //     allowNull: false,
+            // //     defaultValue: false
+            // }
+            
+
         })
     }
 }export default new Cliente().model

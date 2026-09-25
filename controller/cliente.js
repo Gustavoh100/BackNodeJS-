@@ -44,7 +44,7 @@ class ControllerCliente {
 
     async Alterar(req, res) {
         try {
-            const id = req.session.id
+            const id = req.params.id
             const { email, senha, nome } = req.query
 
             await ServiceCliente.Alterar(id, email, senha, nome )
@@ -58,7 +58,7 @@ class ControllerCliente {
 
    async Deletar(req, res) {
         try {
-            const identificador = req.session.id
+            const identificador = req.params.id
 
           await ServiceCliente.Deletar(identificador)
             res.send({ mensagem: "deletado " })
