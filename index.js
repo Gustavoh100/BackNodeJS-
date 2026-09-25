@@ -1,13 +1,13 @@
 import express from 'express'
 import  database from './config/database.js'
 import cliente from './router/cliente.js'
-
+import atendimento from './router/atendimento.js'
 
 const app = express()
 
 app.use(express.json())
 
-
+app.use("/api/v1/atendimento", atendimento )
 app.use("/api/v1/cliente", cliente)
 
 database.db 

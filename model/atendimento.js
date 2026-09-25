@@ -2,26 +2,26 @@ import database from "../config/database.js"
 
 
 
-class Cliente {
+class atendimento {
     constructor() {
 
-        this.model = database.db.define("clientes", {
+        this.model = database.db.define("Atendimentos", {
             id: {
                 type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true
             },
-            nome: {
+            valor: {
                 type: database.db.Sequelize.STRING,
             },
-            email: {
+            dia: {
                 type: database.db.Sequelize.STRING,
                 unique: true
             },
-            senha: {
+            hora: {
                 type: database.db.Sequelize.STRING,
             },
-            pago: {
+            concluido: {
                 type: database.db.Sequelize.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
@@ -30,7 +30,7 @@ class Cliente {
 
         })
     }
-} export default new Cliente().model
+} export default new atendimento().model
 
 
 

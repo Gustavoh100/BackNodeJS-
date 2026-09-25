@@ -14,19 +14,20 @@ class RepositoryCliente {
         return clienteDetalhes
     }
 
-    async Create(email, senha, nome) {
+    async Create(email, senha, nome , pago) {
 
-        const criar = await cliente.create({ email, senha, nome })
+        const criar = await cliente.create({ email, senha, nome , pago})
 
         return criar
     }
-    async Update(id, email, senha, nome) {
+    async Update(id, email, senha, nome , pago ) {
         const clienteAtualizar = await cliente.findByPk(id)
         if (!clienteAtualizar) { throw new Error("usuario não encontrado ") }
 
         clienteAtualizar.email = email
         clienteAtualizar.senha = senha
         clienteAtualizar.nome = nome 
+        clienteAtualizar.pago = pago
         await clienteAtualizar.save()
     }
     

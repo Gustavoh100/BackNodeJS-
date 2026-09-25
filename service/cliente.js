@@ -21,20 +21,20 @@ class ServiceCliente {
         }
         return cliente
     }
-    async Criar(email, senha, nome) {
+    async Criar(email, senha, nome , pago ) {
         if (!email || !senha || !nome) {
             throw new Error("favor informar todos os dados ")
             return
         }
         const senhaCripto = await bcrypt.hash(senha, 12)
 
-        const cliente = await RepositoryCliente.Create(email, senhaCripto, nome)
+        const cliente = await RepositoryCliente.Create(email, senhaCripto, nome , pago )
 
 
         return cliente
     }
     
-    async Alterar(id, email, senha, nome) {
+    async Alterar(id, email, senha, nome , pago) {
         if (!id || !email || !senha || !nome) {
             throw new Error("favor informar id ")
         }
@@ -42,7 +42,7 @@ class ServiceCliente {
             ? undefined
             : await bcrypt.hash(senha, 12)
 
-        const clienteAlterado = await RepositoryCliente.Update(id, email, senhaCripto, nome)
+        const clienteAlterado = await RepositoryCliente.Update(id, email, senhaCripto, nome, pago)
 
         return clienteAlterado
     }
